@@ -3,7 +3,6 @@
 using namespace std;
 
 //Function to add CD in library with parameters set as input by the user.
-
 void Register::addCD() {
 
     string artist, title, playTime;
@@ -15,11 +14,11 @@ void Register::addCD() {
     cin >> playTime;
 
     CD *c = new CD(artist, title, playTime);
+        libraryChanged = true;
     objectRegister.push_back(c);
 }
 
 //Function to add fictional book in library with parameters set as input by the user.
-
 void Register::addFictionbook() {
 
     string title, author;
@@ -29,6 +28,7 @@ void Register::addFictionbook() {
     cin >> author;
 
     Fictionbook *f = new Fictionbook(title, author);
+    libraryChanged = true;
     objectRegister.push_back(f);
 }
 
@@ -42,14 +42,12 @@ void Register::addJournal() {
     cout << "Volume: " << endl;
     cin >> volume;
 
-
-
     Journal *j = new Journal(title, volume);
+    libraryChanged = true;
     objectRegister.push_back(j);
 }
 
 //Function to add Non-fictional in library with parameters set as input by the user.
-
 void Register::addNonfictionBook() {
 
     string category, author;
@@ -59,6 +57,7 @@ void Register::addNonfictionBook() {
     cin >> author;
 
     NonFictionBook *n = new NonFictionBook(category, author);
+    libraryChanged = true;
     objectRegister.push_back(n);
 }
 
@@ -78,6 +77,7 @@ void Register::borrowObject() {
                 found = true;
             } else {
                 objectRegister[i]->registerObjectAsBorrowed(borrowerId);
+                libraryChanged = true;
                 found = true;
             }
         }
@@ -89,7 +89,6 @@ void Register::borrowObject() {
 }
 
 //Function to remove object from library with input from user. Selector here is the ID of the book.
-
 void Register::removeRentalobject() {
     int id;
     bool removed = false;
@@ -102,6 +101,7 @@ void Register::removeRentalobject() {
             //Using the erase-remove idiom to remove the object that matches the ID from the vector. 
             objectRegister.erase(std::remove(objectRegister.begin(), objectRegister.end(), objectRegister[i]), objectRegister.end());
             cout << "Object with id " << id << " has been removed" << endl;
+            libraryChanged = true;
             removed = true;
         }
     }
@@ -112,7 +112,6 @@ void Register::removeRentalobject() {
 }
 
 //Function to read file and create objects from the containing lines.
-
 void Register::readFile() {
     ifstream inFile;
     //Open file name test.txt containing the objects in the library in text-form.
@@ -228,7 +227,6 @@ void Register::readFile() {
 }
 
 //Function to return borrowed object, i.e. set Renter ID to 0.
-
 void Register::returnBorrowObject() {
     int bookId;
 
@@ -243,14 +241,13 @@ void Register::returnBorrowObject() {
                 cout << "Book can not be returned since its not loaned out." << endl;
             } else {
                 objectRegister[i]->returnObject();
+                libraryChanged = true;
             }
         }
     }
-
 }
 
 //Search for object using Author/Creator as selector
-
 void Register::searchRentalobjectAuthor() {
 
     string objectCreator;
@@ -277,7 +274,6 @@ void Register::searchRentalobjectAuthor() {
 }
 
 //Search for object using object title as selector
-
 void Register::searchRentalobjectTitle() {
 
     string objectTitle;
@@ -311,6 +307,9 @@ void Register::writeToFile() {
     for (int i = 0; i < objectRegister.size(); i++) {
         objectRegister[i]->print(outfile);
     }
-
     outfile.close();
+}
+
+bool Register::changeMade() {
+    return libraryChanged;
 }

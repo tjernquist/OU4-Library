@@ -32,7 +32,6 @@ public:
 
 private:
     string title;
-
 };
 
 

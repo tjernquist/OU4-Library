@@ -36,22 +36,20 @@ public:
     }
 
     static const int getMaxId() {
-        return current_id;
+        return current_maxid;
     }
 
     static void setMaxId(int i) {
-        current_id = i;
+        current_maxid = i;
     }
 
     virtual void print(ostream &) {};
     virtual string getTitle() = 0;
     virtual string getAuthor() = 0;
 
-protected:
-    //Static variable that keeps track of the current highest renter ID
-    static int current_id;
-
 private:
+        //Static variable that keeps track of the current highest renter ID
+    static int current_maxid;
     //ID of the rentable object.
     int id;
     //Variable that keeps track of the ID of the borrower.

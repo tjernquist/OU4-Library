@@ -1,4 +1,9 @@
 Fiction
+Hemingway, Ernest
+For Whom the Bell Tolls
+1001
+0
+Fiction
 Faulkner, William
 The Sound and the Fury
 1002
@@ -44,14 +49,3 @@ C/C++ Users Journal
 4/98
 1010
 1009856
-Journal
-Burr
-173
-1011
-0
-CD
-Gucci
-Waka
-13:37
-1013
-0

@@ -47,10 +47,15 @@ public:
     void addJournal();
 
     void addFictionbook();
+    
+    bool changeMade();
 
 
 private:
+    //Vector that houses all the objects of Rentalobject-type in the "library".
     vector<Rentalobject*> objectRegister;
+    //Boolean to keep track of changes in file.
+    bool libraryChanged = false;
 };
 
 #endif	/* REGISTER_H */

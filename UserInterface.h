@@ -10,6 +10,7 @@
 
 #include "Register.h"
 
+//Class that represent the textual interface that the user interact with
 class UserInterface {
 public:
     char initMenu();
